@@ -1,6 +1,8 @@
 import 'package:project1/cubit/app_cubit_states.dart';
 import 'package:project1/cubit/app_cubits.dart';
 import 'package:project1/Pages/main_page.dart';
+import 'package:project1/Pages/map_user.dart';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -24,8 +26,8 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
                 // return WelcomePage();
               }else if(state is LoadingState){
                 return Center(child: CircularProgressIndicator(),);
-              // }else if(state is LoadedState){
-              //   return Most_liked();
+              }else if(state is LoadedState){
+                return MainPage();
               // }else if(state is DetailState){
               //   return DetailPage();
               }else{

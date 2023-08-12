@@ -113,7 +113,7 @@ class _Map_userState extends State<Map_user> {
           print(item.lng);
           mymarker.add(
             Marker(
-              icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/marker1.png'),
+              // icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/markers/atm.png'),
               markerId:  MarkerId(item.place_id+'ww'),
               position:  LatLng(item.lat, item.lng),
               onTap: (){
@@ -171,103 +171,6 @@ class _Map_userState extends State<Map_user> {
 
     }
   }
-
-  setMarkers() async{
-    mymarker = {
-      Marker(
-        markerId: MarkerId("5"),
-        position: LatLng(lat, long),
-        draggable: true,
-        infoWindow: InfoWindow(
-          // title:"55555",
-        ),
-        onTap: () {
-          print('clicked rawan');
-          setState(() {
-            this.pinPillPosition = PIN_VIS;
-          });
-        }
-        ,
-        onDragEnd: (value) async {
-          var xy = await gmc?.getLatLng(ScreenCoordinate(x: 200, y: 200));
-          print('test here');
-          print(xy);
-        },
-      ),
-      Marker(
-        markerId: MarkerId("54"),
-        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/marker1.png'),
-        position: LatLng(21.5750625, 39.2200625),
-        draggable: true,
-        // infoWindow: InfoWindow(
-        //     title:"3100",
-        //     snippet: 'click here'
-        // ),
-        onDragEnd: (value) async {
-          var xy = await gmc?.getLatLng(ScreenCoordinate(x: 220, y: 200));
-          print(xy);
-        },
-      ),
-
-      Marker(
-        markerId: MarkerId("5224"),
-        // icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/markers/atm.png'),
-        position: LatLng(21.573802, 39.219787),
-        draggable: true,
-        // infoWindow: InfoWindow(
-        //     title:"3100",
-        //     snippet: 'click here'
-        // ),
-        onDragEnd: (value) async {
-          var xy = await gmc?.getLatLng(ScreenCoordinate(x: 220, y: 200));
-          print(xy);
-        },
-      ),
-    };
-
-
-    mymarker.addLabelMarker(LabelMarker(
-      // icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/markers/atm.png'),
-      anchor: const Offset(0.5, 2),
-      label: "122\n eerwer",
-      markerId: MarkerId("233"),
-      position: LatLng(21.5750625, 39.2200625),
-      onTap: () {
-        setState(() {
-          this.pinPillPosition = PIN_VIS;
-        });
-        print('cliend label rawan');
-      },
-      backgroundColor: Color.fromRGBO(38, 38, 38, 0.6),
-    ),
-
-    ).then((value) {
-      setState(() {});
-    },
-    );
-    //
-    mymarker.addLabelMarker(LabelMarker(
-      // icon : BitmapDescriptor.defaultMarker,
-        anchor: const Offset(0.5, 2),
-        // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
-        label: "100\n Rawan home",
-        markerId: MarkerId("1"),
-        position: LatLng(lat, long),
-        onTap: () {
-          setState(() {
-            this.pinPillPosition = PIN_VIS;
-          });
-          print('cliend label rawan');
-        },
-        backgroundColor: Color.fromRGBO(38, 38, 38, 0.6)
-    )).then((value) {
-
-    },
-    );
-
-    get_markers();
-
-  }
   Future<void> getData() async{
 
 
@@ -302,21 +205,155 @@ class _Map_userState extends State<Map_user> {
     );
     // print('here marker');
     // print(cl);
-    // if (this.mounted) {
-      // setState(() {
-        setMarkers();
+    if (this.mounted) {
+      setState(() {
+        mymarker = {
+          Marker(
+            markerId: MarkerId("5"),
+            position: LatLng(lat, long),
+            draggable: true,
+            infoWindow: InfoWindow(
+              // title:"55555",
+            ),
+            onTap: () {
+              print('clicked rawan');
+              setState(() {
+                this.pinPillPosition = PIN_VIS;
+              });
+            }
+            ,
+            onDragEnd: (value) async {
+              var xy = await gmc?.getLatLng(ScreenCoordinate(x: 200, y: 200));
+              print('test here');
+              print(xy);
+            },
+          ),
+          Marker(
+            markerId: MarkerId("54"),
+            // icon:     ,
+            position: LatLng(21.5750625, 39.2200625),
+            draggable: true,
+            // infoWindow: InfoWindow(
+            //     title:"3100",
+            //     snippet: 'click here'
+            // ),
+            onDragEnd: (value) async {
+              var xy = await gmc?.getLatLng(ScreenCoordinate(x: 220, y: 200));
+              print(xy);
+            },
+          ),
+          // Marker(
+          //   markerId: MarkerId("dd54"),
+          //   // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+          //   position:   LatLng(21.5635577 ,39.2048046),
+          //   draggable: true,
+          //   // infoWindow: InfoWindow(
+          //   //     title:"3100",
+          //   //     snippet: 'click here'
+          //   // ),
+          //   onDragEnd: (value) async{
+          //     var xy= await gmc?.getLatLng(ScreenCoordinate(x:220 , y:200));
+          //     print(xy);
+          //   },
+          // )
+        };
+
+        get_markers();
+
+        mymarker.addLabelMarker(LabelMarker(
+          // icon : BitmapDescriptor.defaultMarker,
+          anchor: const Offset(0.5, 2),
+          label: "122\n eerwer",
+          markerId: MarkerId("233"),
+          position: LatLng(21.5750625, 39.2200625),
+          onTap: () {
+            setState(() {
+              this.pinPillPosition = PIN_VIS;
+            });
+            print('cliend label rawan');
+          },
+          backgroundColor: Color.fromRGBO(38, 38, 38, 0.6),
+        ),).then((value) {
+          setState(() {});
+        },
+        );
+
+        mymarker.addLabelMarker(LabelMarker(
+          // icon : BitmapDescriptor.defaultMarker,
+            anchor: const Offset(0.5, 2),
+            // icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueGreen),
+            label: "100\n Rawan home",
+            markerId: MarkerId("1"),
+            position: LatLng(lat, long),
+            onTap: () {
+              setState(() {
+                this.pinPillPosition = PIN_VIS;
+              });
+              print('cliend label rawan');
+            },
+            backgroundColor: Color.fromRGBO(38, 38, 38, 0.6)
+        )).then((value) {
+
+        },
+        );
 
 
+        // mymarker.addLabelMarker(LabelMarker(
+        //   icon : BitmapDescriptor.defaultMarker,
+        //   anchor: const Offset(0.5, 1.7),
+        //   label: "122\n Saco",
+        //   markerId: MarkerId("2"),
+        //   position: LatLng(21.5635577, 39.2048046),
+        //   onTap: () {
+        //     setState(() {
+        //       this.pinPillPosition = PIN_VIS;
+        //     });
+        //     print('cliend label 333rawan');
+        //   },
+        //   backgroundColor: Color.fromRGBO(38, 38, 38, 0.6)
+        //   ,
+        // ),).then((value) {
+        //   setState(() {});
+        // },
+        // );
+
+        // mymarker.addLabelMarker(LabelMarker(
+        //   // icon : BitmapDescriptor.defaultMarker,
+        //   anchor: const Offset(0.5, 1.7),
+        //   label: "2000\n Albaik",
+        //   markerId: MarkerId("eee2"),
+        //   position: LatLng(21.5635577, 39.2048046),
+        //   backgroundColor: Color.fromRGBO(38, 38, 38, 0.6)
+        //   ,
+        // ),).then((value) {
+        //   setState(() {});
+        // },
+        // );
+
+      }
+      );
+    }
 
 
+    mymarker.add(
+      Marker(
+        icon: await BitmapDescriptor.fromAssetImage(ImageConfiguration.empty, 'assets/images/markers/atm.png')
+        markerId: const MarkerId("3"),
+        position: const LatLng(21.565362 ,39.210682),
+        onTap: (){
+          customInfoWindowController.addInfoWindow!(
+              Text('fdfdfg'),
+              LatLng(21.565362 ,39.210682)
+          );
+        },
+        infoWindow: InfoWindow(
 
+          title:"233",
+          // snippet: 'click here'
+        ),
 
-      // }
-      // );
-    // }
-
-
-
+      ),
+    );
   }
 
 
@@ -324,7 +361,6 @@ class _Map_userState extends State<Map_user> {
   void initState(){
     getPer();
     getData();
-    // setMarkers();
 
     // get_markers();
     // print('ere');
@@ -449,7 +485,7 @@ class _Map_userState extends State<Map_user> {
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           ImageIcon(
-                            AssetImage("assets/images/markers/atm.png"),
+                            AssetImage("assets/images/distance.png"),
                             color: Colors.blue,
                             size: 20,
                           ),

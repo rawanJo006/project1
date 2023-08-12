@@ -12,15 +12,14 @@ class AppCubits extends Cubit<CubitStates>{
   late final places;
 
 
-  void getData() async {
+   getData() async {
     try{
-      emit(LoadingState());
+      // emit(LoadingState());
       places= await data.getInfo();
-      // print(data.getInfo());
       // Future.delayed(Duration(seconds: 4) , () {
-      emit(LoadedState(places));
+      // emit(LoadedState(places));
       // });
-
+      return places;
     }catch(e){
       print(e);
     }
@@ -29,13 +28,11 @@ class AppCubits extends Cubit<CubitStates>{
 
   detailPage( DataModel data){
     emit(DetailState(data));
-
   }
 
 
   goHome(){
     emit(LoadedState(places));
-
   }
 
   goHome2(){
